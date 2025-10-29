@@ -31,6 +31,8 @@ static bool bootpicker_main_view_input_callback(InputEvent* event, void* context
         return false;
     }
     
+    FURI_LOG_I(TAG, "Input callback: type=%d key=%d", event->type, event->key);
+    
     if(event->type == InputTypeShort) {
         const Profile* profile = NULL;
         
@@ -226,8 +228,8 @@ static BootPickerApp* bootpicker_app_alloc() {
     TRACE_POINT("view_dispatcher_ok");
     view_dispatcher_set_event_callback_context(app->view_dispatcher, app);
     view_dispatcher_set_custom_event_callback(app->view_dispatcher, bootpicker_custom_event_callback);
-    // Don't set navigation callback - let view handle all inputs directly
-    view_dispatcher_attach_to_gui(app->view_dispatcher, app->gui, ViewDispatcherTypeFullscreen);
+    // Use Desktop type to allow all input events to reach the view
+    view_dispatcher_attach_to_gui(app->view_dispatcher, app->gui, ViewDispatcherTypeDesktop);
     
     // Initialize scene manager
     TRACE_POINT("scene_manager_alloc");

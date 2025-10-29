@@ -50,15 +50,15 @@ void bootpicker_scene_main_on_enter(void* context) {
     hid_sender_init(app->hid_sender);
     FURI_LOG_I(TAG, "USB HID initialization complete");
     
-    // Start F12 spam if auto-start enabled (only if not already in Done state)
-    if(app->auto_start_spam && !app->is_spamming && !app->is_done_state) {
+    // Start F12 spam if auto-start enabled
+    if(app->auto_start_spam) {
         app->is_spamming = true;
         bootpicker_main_view_set_status(app->main_view, "Spamming F12...");
         bootpicker_main_view_set_spamming(app->main_view, true);
         furi_timer_start(app->f12_timer, furi_ms_to_ticks(app->spam_interval_ms));
         FURI_LOG_I(TAG, "Started F12 spam timer");
         TRACE_POINT("f12_timer_started");
-    } else if(!app->is_spamming && !app->is_done_state) {
+    } else {
         bootpicker_main_view_set_status(app->main_view, "Ready");
         bootpicker_main_view_set_spamming(app->main_view, false);
     }
@@ -71,6 +71,8 @@ bool bootpicker_scene_main_on_event(void* context, SceneManagerEvent event) {
     if(!app) {
         return false;
     }
+    
+    FURI_LOG_I(TAG, "Scene event: type=%d event=%lu", event.type, event.event);
     
     if(event.type == SceneManagerEventTypeCustom) {
         switch(event.event) {
