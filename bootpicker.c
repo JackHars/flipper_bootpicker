@@ -23,14 +23,6 @@ static bool bootpicker_custom_event_callback(void* context, uint32_t custom_even
     return scene_manager_handle_custom_event(app->scene_manager, custom_event);
 }
 
-static bool bootpicker_back_event_callback(void* context) {
-    BootPickerApp* app = context;
-    if(!app || !app->scene_manager) {
-        return false;
-    }
-    return scene_manager_handle_back_event(app->scene_manager);
-}
-
 static bool bootpicker_main_view_input_callback(InputEvent* event, void* context) {
     BootPickerApp* app = context;
     bool consumed = false;
@@ -234,7 +226,7 @@ static BootPickerApp* bootpicker_app_alloc() {
     TRACE_POINT("view_dispatcher_ok");
     view_dispatcher_set_event_callback_context(app->view_dispatcher, app);
     view_dispatcher_set_custom_event_callback(app->view_dispatcher, bootpicker_custom_event_callback);
-    view_dispatcher_set_navigation_event_callback(app->view_dispatcher, bootpicker_back_event_callback);
+    // Don't set navigation callback - let view handle all inputs directly
     view_dispatcher_attach_to_gui(app->view_dispatcher, app->gui, ViewDispatcherTypeFullscreen);
     
     // Initialize scene manager
