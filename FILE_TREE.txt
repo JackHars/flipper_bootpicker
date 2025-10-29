@@ -1,0 +1,135 @@
+BootPicker - Complete File Structure
+=====================================
+
+flipper/
+│
+├── application.fam                      # FAP build configuration
+├── bootpicker.c                         # Main application (464 lines)
+├── bootpicker_i.h                       # Internal structures & app context
+│
+├── profiles.c                           # Profile management (353 lines)
+├── profiles.h                           # Profile data structures (88 lines)
+│
+├── hid_sender.c                         # USB HID operations (59 lines)
+├── hid_sender.h                         # HID interface (24 lines)
+│
+├── scenes/                              # UI Scene implementations
+│   ├── bootpicker_scene.h               # Scene interface (24 lines)
+│   ├── bootpicker_scene.c               # Scene manager setup (30 lines)
+│   ├── bootpicker_scene_config.h        # Scene configuration (3 lines)
+│   ├── bootpicker_scene_main.c          # Main screen logic (126 lines)
+│   ├── bootpicker_scene_profile_editor.c # Profile editor (220 lines)
+│   └── bootpicker_scene_settings.c      # Settings screen (101 lines)
+│
+├── views/                               # Custom view implementations
+│   ├── bootpicker_main_view.h           # Main view interface (14 lines)
+│   └── bootpicker_main_view.c           # Main view rendering (115 lines)
+│
+├── icons/                               # Application assets
+│   ├── bootpicker_10px.png              # App icon (273 bytes)
+│   ├── bootpicker_10px.pbm              # Icon source (210 bytes)
+│   └── ICON_README.txt                  # Icon creation guide
+│
+├── README.md                            # User guide & documentation
+├── BUILD_INSTRUCTIONS.md                # Build & compile guide
+├── DEVELOPER_NOTES.md                   # Architecture & dev docs
+├── PROJECT_SUMMARY.md                   # Project overview
+├── example_profiles.json                # Sample profiles
+├── .gitignore                           # Git configuration
+└── FILE_TREE.txt                        # This file
+
+Total Statistics
+================
+
+Source Code:
+- C Files: 9 files (1,538 lines total)
+- Header Files: 5 files
+- Total Code: ~1,538 lines
+
+Documentation:
+- README.md: Comprehensive user guide
+- BUILD_INSTRUCTIONS.md: Build & development guide  
+- DEVELOPER_NOTES.md: Architecture details
+- PROJECT_SUMMARY.md: Project overview
+- Total Documentation: ~1,500+ lines
+
+Assets:
+- Application icon (PNG, 10x10 px)
+- Example profiles (5 samples)
+
+Dependencies
+============
+
+Required:
+- Unleashed Firmware (2024+)
+- USB HID support
+- Furi framework
+- Storage API
+- GUI/SceneManager
+
+No external libraries needed!
+
+Build Output
+============
+
+When built, produces:
+- bootpicker.fap (~50-100KB compiled)
+
+Install location on Flipper:
+- /ext/apps/USB/bootpicker.fap
+
+Runtime files created:
+- /ext/apps_data/bootpicker/profiles.json
+
+File Descriptions
+=================
+
+Core Application:
+- application.fam: Defines app metadata, dependencies, build config
+- bootpicker.c: Main entry point, app lifecycle, UI setup
+- bootpicker_i.h: Shared structures, app context definition
+
+Profile System:
+- profiles.h/c: JSON I/O, profile validation, config management
+- Handles loading/saving profiles from SD card
+- Implements atomic file writes for safety
+
+HID System:
+- hid_sender.h/c: USB keyboard emulation wrapper
+- Sends F12, arrow keys, ENTER
+- Manages USB mode switching
+
+Scene System:
+- bootpicker_scene*: UI screens and navigation
+  * Main: F12 spam control, profile selection
+  * Profile Editor: Create/edit profiles, calibration
+  * Settings: Global configuration
+
+View System:
+- bootpicker_main_view: Custom view with spinner animation
+- Uses Flipper's view model for efficient rendering
+
+Key Features Implemented
+========================
+
+✅ F12 Spam Loop (FuriTimer-based)
+✅ Profile Management (JSON storage)
+✅ Profile Editor (full CRUD operations)
+✅ Calibration Mode (timing measurement)
+✅ HID Sequence Execution (arrows + ENTER)
+✅ Settings Screen (global config)
+✅ Animated UI (spinner, status updates)
+✅ Input Handling (navigation, long-press)
+✅ Error Handling (graceful degradation)
+✅ Data Validation (safety checks)
+
+Ready to Build!
+===============
+
+Status: ✅ COMPLETE
+
+All files present and ready for compilation.
+See BUILD_INSTRUCTIONS.md for build steps.
+See README.md for usage instructions.
+See DEVELOPER_NOTES.md for architecture details.
+

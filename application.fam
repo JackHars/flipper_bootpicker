@@ -1,0 +1,20 @@
+App(
+    appid="bootpicker",
+    name="BootPicker",
+    apptype=FlipperAppType.EXTERNAL,
+    entry_point="bootpicker_app",
+    stack_size=2 * 1024,
+    fap_category="USB",
+    fap_version="1.0",
+    fap_icon="icons/bootpicker_10px.png",
+    fap_description="Automated boot menu selector with F12 spam and HID profile execution",
+    fap_author="BootPicker Team",
+    fap_weburl="https://github.com/bootpicker",
+    requires=[
+        "gui",
+        "storage",
+    ],
+    fap_libs=["assets"],
+    fap_file_assets=".",
+)
+

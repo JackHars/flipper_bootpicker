@@ -1,0 +1,41 @@
+{
+  "profiles": [
+    {
+      "name": "Windows",
+      "arrow_count": 0
+    },
+    {
+      "name": "Ubuntu",
+      "arrow_count": 1
+    },
+    {
+      "name": "Profile 3",
+      "arrow_count": 2
+    },
+    {
+      "name": "Profile 4",
+      "arrow_count": 3
+    },
+    {
+      "name": "Profile 5",
+      "arrow_count": 4
+    },
+    {
+      "name": "Profile 6",
+      "arrow_count": 5
+    },
+    {
+      "name": "Profile 7",
+      "arrow_count": 6
+    },
+    {
+      "name": "Profile 8",
+      "arrow_count": 7
+    },
+    {
+      "name": "P3",
+      "arrow_count": 8
+    }
+  ]
+}
+

@@ -1,0 +1,40 @@
+{
+  "profiles": [
+    {
+      "name": "Windows 11",
+      "arrow_count": 0
+    },
+    {
+      "name": "Ubuntu 24.04",
+      "arrow_count": 1
+    },
+    {
+      "name": "Rescue USB",
+      "arrow_count": 2
+    },
+    {
+      "name": "Windows Recovery",
+      "arrow_count": 3
+    },
+    {
+      "name": "Debian",
+      "arrow_count": 4
+    },
+    {
+      "name": "Arch Linux",
+      "arrow_count": 5
+    },
+    {
+      "name": "Fedora",
+      "arrow_count": 6
+    },
+    {
+      "name": "FreeBSD",
+      "arrow_count": 7
+    },
+    {
+      "name": "HIVE OS",
+      "arrow_count": 8
+    }
+  ]
+}
