@@ -131,7 +131,7 @@ bool profiles_load_from_file(const char* file_path) {
         snprintf(PROFILES[1].name, MAX_PROFILE_NAME_LEN, "Ubuntu");
         PROFILES[1].arrow_count = 1;
         
-        snprintf(PROFILES[2].name, MAX_PROFILE_NAME_LEN, "Profile 3");
+        snprintf(PROFILES[2].name, MAX_PROFILE_NAME_LEN, "HIVE");
         PROFILES[2].arrow_count = 2;
         
         snprintf(PROFILES[3].name, MAX_PROFILE_NAME_LEN, "Profile 4");
@@ -149,8 +149,8 @@ bool profiles_load_from_file(const char* file_path) {
         snprintf(PROFILES[7].name, MAX_PROFILE_NAME_LEN, "Profile 8");
         PROFILES[7].arrow_count = 7;
         
-        snprintf(PROFILES[8].name, MAX_PROFILE_NAME_LEN, "P3");
-        PROFILES[8].arrow_count = 8;
+        snprintf(PROFILES[8].name, MAX_PROFILE_NAME_LEN, "P4");
+        PROFILES[8].arrow_count = 4;
         
         success = true;
         goto cleanup;

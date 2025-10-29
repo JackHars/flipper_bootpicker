@@ -26,13 +26,13 @@ static void bootpicker_main_view_draw_callback(Canvas* canvas, void* _model) {
     canvas_draw_str_aligned(canvas, 2, 32, AlignLeft, AlignCenter, "Win");
     canvas_draw_str_aligned(canvas, 10, 32, AlignLeft, AlignCenter, "←");
     
-    // Right: Profile 3 (RIGHT arrow)
-    canvas_draw_str_aligned(canvas, 126, 32, AlignRight, AlignCenter, "P3");
+    // Right: HIVE (RIGHT arrow)
+    canvas_draw_str_aligned(canvas, 126, 32, AlignRight, AlignCenter, "HIVE");
     canvas_draw_str_aligned(canvas, 118, 32, AlignRight, AlignCenter, "→");
     
-    // Bottom: P3 (DOWN arrow)
+    // Bottom: P4 (DOWN arrow)
     canvas_draw_str_aligned(canvas, 64, 54, AlignCenter, AlignBottom, "↓");
-    canvas_draw_str_aligned(canvas, 64, 62, AlignCenter, AlignBottom, "P3");
+    canvas_draw_str_aligned(canvas, 64, 62, AlignCenter, AlignBottom, "P4");
     
     // Center: Status
     canvas_set_font(canvas, FontPrimary);

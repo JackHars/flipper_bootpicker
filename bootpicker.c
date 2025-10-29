@@ -85,8 +85,8 @@ static bool bootpicker_main_view_input_callback(InputEvent* event, void* context
             break;
             
         case InputKeyRight:
-            // Execute Profile 2 (DOWN DOWN ENTER)
-            FURI_LOG_I(TAG, "RIGHT: Executing Profile 2");
+            // Execute Profile 2 (HIVE - 2 DOWNs ENTER)
+            FURI_LOG_I(TAG, "RIGHT: Executing Profile 2 (HIVE)");
             app->selected_profile_index = 2;
             profile = profile_get(2);
             if(profile) {
@@ -105,8 +105,8 @@ static bool bootpicker_main_view_input_callback(InputEvent* event, void* context
             break;
             
         case InputKeyDown:
-            // Execute Profile 8 (HIVE - 8 DOWNs ENTER)
-            FURI_LOG_I(TAG, "DOWN: Executing Profile 8 (HIVE)");
+            // Execute Profile 8 (P4 - 4 DOWNs ENTER)
+            FURI_LOG_I(TAG, "DOWN: Executing Profile 8 (P4)");
             app->selected_profile_index = 8;
             profile = profile_get(8);
             if(profile) {
