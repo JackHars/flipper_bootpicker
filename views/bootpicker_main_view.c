@@ -8,7 +8,7 @@ struct BootPickerMainView {
 
 typedef struct {
     char profile_name[32];
-    bool is_executing;
+    char status[32];
 } BootPickerMainViewModel;
 
 static void bootpicker_main_view_draw_callback(Canvas* canvas, void* _model) {
@@ -36,11 +36,7 @@ static void bootpicker_main_view_draw_callback(Canvas* canvas, void* _model) {
     
     // Center: Status
     canvas_set_font(canvas, FontPrimary);
-    if(model->is_executing) {
-        canvas_draw_str_aligned(canvas, 64, 32, AlignCenter, AlignCenter, "Executing...");
-    } else {
-        canvas_draw_str_aligned(canvas, 64, 32, AlignCenter, AlignCenter, "Booting...");
-    }
+    canvas_draw_str_aligned(canvas, 64, 32, AlignCenter, AlignCenter, model->status);
 }
 
 static void bootpicker_main_view_enter_callback(void* context) {
@@ -74,7 +70,7 @@ BootPickerMainView* bootpicker_main_view_alloc() {
         BootPickerMainViewModel* model,
         {
             strcpy(model->profile_name, "Windows");
-            model->is_executing = false;
+            strcpy(model->status, "Ready");
         },
         false);
     
@@ -108,7 +104,7 @@ void bootpicker_main_view_set_status(BootPickerMainView* view, const char* statu
     with_view_model(
         view->view,
         BootPickerMainViewModel* model,
-        { model->is_executing = (strcmp(status, "Executing...") == 0); },
+        { strncpy(model->status, status, sizeof(model->status) - 1); },
         true);
 }
 
