@@ -7,6 +7,11 @@
 static void f12_timer_callback(void* context) {
     BootPickerApp* app = context;
     if(app && app->hid_sender && app->is_spamming) {
+        // Reset done state when starting to spam
+        if(app->is_done_state) {
+            app->is_done_state = false;
+            bootpicker_main_view_set_status(app->main_view, "Spamming F12...");
+        }
         if(app->use_esc_key) {
             hid_sender_send_esc(app->hid_sender);
         } else {
@@ -59,6 +64,7 @@ static bool bootpicker_main_view_input_callback(InputEvent* event, void* context
                 bootpicker_main_view_set_status(app->main_view, "Executing...");
                 hid_sender_execute_profile(app->hid_sender, profile->arrow_count, app->send_second_enter);
                 bootpicker_main_view_set_status(app->main_view, "Done!");
+                app->is_done_state = true;  // Mark as done state
                 // Stop spamming after execution - don't resume
             }
             consumed = true;
@@ -79,13 +85,8 @@ static bool bootpicker_main_view_input_callback(InputEvent* event, void* context
                 bootpicker_main_view_set_status(app->main_view, "Executing...");
                 hid_sender_execute_profile(app->hid_sender, profile->arrow_count, app->send_second_enter);
                 bootpicker_main_view_set_status(app->main_view, "Done!");
-                if(app->auto_start_spam) {
-                    furi_delay_ms(1000);
-                    app->is_spamming = true;
-                    bootpicker_main_view_set_status(app->main_view, "Spamming F12...");
-                    bootpicker_main_view_set_spamming(app->main_view, true);
-                    furi_timer_start(app->f12_timer, furi_ms_to_ticks(app->spam_interval_ms));
-                }
+                app->is_done_state = true;  // Mark as done state
+                // Stop spamming after execution - don't resume
             }
             consumed = true;
             break;
@@ -105,13 +106,8 @@ static bool bootpicker_main_view_input_callback(InputEvent* event, void* context
                 bootpicker_main_view_set_status(app->main_view, "Executing...");
                 hid_sender_execute_profile(app->hid_sender, profile->arrow_count, app->send_second_enter);
                 bootpicker_main_view_set_status(app->main_view, "Done!");
-                if(app->auto_start_spam) {
-                    furi_delay_ms(1000);
-                    app->is_spamming = true;
-                    bootpicker_main_view_set_status(app->main_view, "Spamming F12...");
-                    bootpicker_main_view_set_spamming(app->main_view, true);
-                    furi_timer_start(app->f12_timer, furi_ms_to_ticks(app->spam_interval_ms));
-                }
+                app->is_done_state = true;  // Mark as done state
+                // Stop spamming after execution - don't resume
             }
             consumed = true;
             break;
@@ -131,13 +127,8 @@ static bool bootpicker_main_view_input_callback(InputEvent* event, void* context
                 bootpicker_main_view_set_status(app->main_view, "Executing...");
                 hid_sender_execute_profile(app->hid_sender, profile->arrow_count, app->send_second_enter);
                 bootpicker_main_view_set_status(app->main_view, "Done!");
-                if(app->auto_start_spam) {
-                    furi_delay_ms(1000);
-                    app->is_spamming = true;
-                    bootpicker_main_view_set_status(app->main_view, "Spamming F12...");
-                    bootpicker_main_view_set_spamming(app->main_view, true);
-                    furi_timer_start(app->f12_timer, furi_ms_to_ticks(app->spam_interval_ms));
-                }
+                app->is_done_state = true;  // Mark as done state
+                // Stop spamming after execution - don't resume
             }
             consumed = true;
             break;
@@ -224,6 +215,7 @@ static BootPickerApp* bootpicker_app_alloc() {
         return NULL;
     }
     app->is_spamming = false;
+    app->is_done_state = false;
     TRACE_POINT("timer_alloc_ok");
     
     // Open GUI

@@ -35,6 +35,7 @@ typedef struct {
     HidSender* hid_sender;
     FuriTimer* f12_timer;
     bool is_spamming;
+    bool is_done_state;  // Track if we're in "Done!" state
     
     // Profile selection (0-8)
     uint8_t selected_profile_index;
